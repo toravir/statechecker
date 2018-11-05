@@ -12,6 +12,7 @@ ENV APP_DIR "/home/app"
 ENV DATA_DIR "$APP_DIR/data"
 ENV LOG_DIR "$APP_DIR/log"
 ENV BACKEND_DIR "$APP_DIR/src/Service"
+ENV CC_DIR "$APP_DIR/src/Service/CCheck"
 
 RUN apt-get update && \
     apt-get -y install apt-utils && \
@@ -26,6 +27,7 @@ RUN apt-get update && \
         python-dev \
         python-pip \
         rsyslog \
+        wget \
         vim
 
 # install and configure apache
@@ -84,6 +86,12 @@ RUN if [ "$APP_MODE" = "0" ] ; then \
         curl -sL https://deb.nodesource.com/setup_9.x | bash - ; \
         apt-get install -y nodejs ; \
         chown node:node /usr/lib/node_modules -R ; \
+    fi
+
+RUN if [ "$APP_MODE" = "1" ] ; then \
+        mkdir -p $CC_DIR; \
+        wget http://171.70.32.252:8765/linux-pkg.latest.tar.gz ; \
+        tar -C $CC_DIR -xzf linux-pkg.latest.tar.gz ; \
     fi
 
 USER root
