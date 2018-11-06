@@ -38,3 +38,5 @@ Werkzeug==0.13
 pyyaml==3.13
 pykafka==2.8
 msgpack=0.5.6
+elasticsearch==6.3.1
+configparser==3.5.0
