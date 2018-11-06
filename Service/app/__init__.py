@@ -38,6 +38,7 @@ def create_app(config_filename="config.py"):
     from .models.aci.fabric import Fabric
     from .models.aci.managed_objects import ManagedObjects
     from .models.aci.snapshots import Snapshots
+    from .models.aci.cchecker_rest import ConsistencyChecker
     from .models.app_status import AppStatus
     from .models.rest.swagger.docs import Docs
     from .models.settings import Settings
